@@ -1,25 +1,46 @@
-import logo from './logo.svg';
+import React from 'react';
+import Picture from './Picture';
+import imgSrc from "./assets/taherhaouet.jpg"
+
 import './App.css';
+export default class App extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {fullName:"taher haouet",bio: "bonjour" ,
+    profession: "dev",imgSrc : true, timer: null};
+    }
+    componentDidMount(){
+      console.log('Component à été monté');
+    }
+    componentDidUpdate(){
+      console.log('component  mis à jour');
+    }
+    handleClick(){
+    this.setState(e => (
+      {
+        fullName: !e.fullName,
+        bio: !e.bio ,
+        profession: !e.profession,
+        imgSrc: !e.imgSrc
+        
+      })      
+    );}        
+    
+  render() {   
+  return (  
+ <>
+      <ul>
+      {this.state.imgSrc ? <Picture imgSrc= {imgSrc}/>: null }
+      <li>Bonjour: {this.state.fullName}</li>
+      <li>Bio: {this.state.bio}</li>
+      <li>profession :{this.state.profession}</li>
+      </ul>
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <button onClick={()=>this.handleClick()}> 
+      Click on 
+      </button>
+ </>
+
   );
-}
-
-export default App;
+}}
